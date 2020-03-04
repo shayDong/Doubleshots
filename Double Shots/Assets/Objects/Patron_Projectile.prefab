@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  projectileSpeed: 5
+  projectileSpeed: 10
 --- !u!54 &5548420390911946436
 Rigidbody:
   m_ObjectHideFlags: 0
