@@ -52,22 +52,24 @@ public class Patron_Collide : MonoBehaviour
         //check if mans is aggro
 
         if(collideObject.tag == "Projectile"){
-            
-            if(collideObject.GetComponent<ShotType>().type == typeCompare && !GetComponent<Patron_Data>().isSatisfied)
+            if (!GetComponent<Patron_Data>().isSatisfied)
             {
-                
-                observer.GetComponent<Observer_Data>().score += 10;
-                GetComponent<Patron_Data>().isSatisfied = true;
-                audioSource.PlayOneShot(correctOrder, 0.75f);
+                if (collideObject.GetComponent<ShotType>().type == typeCompare)
+                {
+
+                    observer.GetComponent<Observer_Data>().score += 10;
+                    GetComponent<Patron_Data>().isSatisfied = true;
+                    audioSource.PlayOneShot(correctOrder, 0.75f);
+                }
+                else
+                {
+
+                    observer.GetComponent<Observer_Data>().score -= 10;
+                    GetComponent<Patron_Data>().isHostile = true;
+                    audioSource.PlayOneShot(wrongOrder, 0.75f);
+                }
+                Destroy(collideObject);
             }
-            else
-            {
-                
-                observer.GetComponent<Observer_Data>().score -= 10;
-                GetComponent<Patron_Data>().isHostile = true;
-                audioSource.PlayOneShot(wrongOrder, 0.75f);
-            }
-            Destroy(collideObject);
 
 
         }
