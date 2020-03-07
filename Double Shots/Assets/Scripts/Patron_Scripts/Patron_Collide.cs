@@ -7,6 +7,7 @@ public class Patron_Collide : MonoBehaviour
     private GameObject collideObject;
     private int typeCompare;
     private GameObject observer;
+    public GameObject correctOrderUI;
 
     AudioSource audioSource;
     public AudioClip correctOrder, wrongOrder;
@@ -14,6 +15,7 @@ public class Patron_Collide : MonoBehaviour
     private void Start()
     {
         observer = GameObject.Find("Observer");
+        correctOrderUI.SetActive(false);
         switch (GetComponent<Patron_Data>().wantedDrink)
         {
             case "red":
@@ -41,7 +43,14 @@ public class Patron_Collide : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
     }
-
+    private void Update()
+    {
+        if (GetComponent<Patron_Data>().isSatisfied)
+        {
+            correctOrderUI.SetActive(true);
+            
+        }
+    }
     //doesn't need to be put into update
     private void OnTriggerEnter(Collider ammoCol)
     {
@@ -59,6 +68,7 @@ public class Patron_Collide : MonoBehaviour
 
                     observer.GetComponent<Observer_Data>().score += 10;
                     GetComponent<Patron_Data>().isSatisfied = true;
+                    
                     audioSource.PlayOneShot(correctOrder, 0.75f);
                 }
                 else

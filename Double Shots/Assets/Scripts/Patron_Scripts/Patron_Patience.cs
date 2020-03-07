@@ -27,7 +27,10 @@ public class Patron_Patience : MonoBehaviour
             patienceUI.SetActive(true);
         }
         noPatience();
-  
+        if (GetComponent<Patron_Data>().isSatisfied)
+        {
+            patienceUI.SetActive(false);
+        }
         
     }
 
