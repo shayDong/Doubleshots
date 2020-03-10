@@ -21,6 +21,7 @@ public class Patron_Projectile : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, playerPosition, projectileSpeed * Time.deltaTime);
+        Invoke("selfDestruct", 4f);
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -32,5 +33,9 @@ public class Patron_Projectile : MonoBehaviour
             observer.GetComponent<Observer_Data>().gameOver = true;
         }
         
+    }
+    private void selfDestruct()
+    {
+        Destroy(gameObject);
     }
 }
