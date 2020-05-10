@@ -142,4 +142,5 @@ MonoBehaviour:
   - {fileID: 886401697485682586, guid: 772236a99085a6f418254b72d76bd108, type: 3}
   stopSpawning: 0
   secSpawnDelay: 2
+  initialDelay: 0
   chairs: []
